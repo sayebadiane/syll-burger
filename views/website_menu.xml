@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="menu_orders_public" model="website.menu">
+            <field name="name">SYLL BURGER</field>
+            <field name="url">/syll_burger</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">50</field>
+        </record>
+
+        <!-- Product Type Buttons -->
+        <template id="syll_burger_menu_buttons" inherit_id="website.layout" name="Syll Burger Menu Buttons">
+            <xpath expr="//div[@id='wrapwrap']/header" position="after">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="nav nav-pills">
+                                <li t-foreach="[('burger', 'BURGERS'), ('smashs', 'SMASHS'), ('chicken_burger', 'CHICKEN BURGERS'), ('menu_enfant', 'MENU ENFANTS'), ('snacks', 'SNACKS'), ('sauce', 'SAUCE'), ('milk_shakes', 'MILK-SHAKES'), ('dessert', 'DESSERTS'), ('boissons_eau', 'BOISSONS ET EAU')]" t-as="product_type">
+                                    <a t-attf-href="/syll_burger/product_type/#{product_type[0]}" class="nav-link">
+                                        <t t-esc="product_type[1]"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

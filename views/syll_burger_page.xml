@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <template id="syll_burger_page" name="Syll Burger Page">
+            <t t-call="website.layout">
+                <h1><t t-esc="product_type"/></h1>
+                <style>
+                    .card {
+                        margin-bottom: 15px;
+                        border: 1px solid #ddd;
+                        border-radius: 5px;
+                    }
+                    .card-img-top {
+                        max-height: 200px;
+                        object-fit: cover;
+                    }
+                    .card-title {
+                        font-size: 1.2rem;
+                        margin-bottom: 0.5rem;
+                    }
+                    .card-text {
+                        font-size: 1rem;
+                    }
+                    .btn-primary {
+                        background-color: #f0ad4e; /* Example color from the image */
+                        border-color: #f0ad4e;
+                        color: #fff;
+                    }
+                    .btn-primary:hover {
+                        background-color: #eea236;
+                        border-color: #eea236;
+                    }
+                </style>
+                <div class="oe_structure"/>
+                <div class="container">
+                    <h1>Syll Burger</h1>
+                    <!-- Iterate through distinct product types -->
+                    <t t-foreach="grouped_products.items()" t-as="group">
+                        <t t-set="product_type" t-value="group[0]"/>
+                        <t t-set="product_list" t-value="group[1]"/>
+
+                        <h5><t t-esc="product_type.upper()"/><span style="margin: 6px;"> <t t-esc="len(product_list)" /></span> Articles</h5>
+                        <div class="row">
+                            <t t-foreach="product_list" t-as="product">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <img t-att-src="'/web/image/product.template/' + str(product.id) + '/image_1920'" class="card-img-top" alt="Product Image"/>
+                                        <div class="card-body">
+                                            <h5 class="card-title"><t t-esc="product.name[:15]"/></h5>
+                                            <p class="card-text"><t t-esc="product.description"/></p>
+                                            <p class="card-text">CFA <span><t t-esc="product.list_price"/></span></p>
+                                            <a t-att-href="'/shop/' + slug(product)" class="w-100 text-decoration-none btn btn-primary">Ajouter+</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -4,7 +4,7 @@ class CustomProduct(models.Model):
     _inherit = 'product.template'
 
     product_type = fields.Selection([
-        ('berger', 'BURGERS'),
+        ('burger', 'BURGERS'),
         ('smashs', 'SMASHS'),
         ('chicken_burger', 'CHICKEN BURGERS'),
         ('menu_enfant', 'MENU ENFANTS'),
