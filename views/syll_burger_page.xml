@@ -32,7 +32,46 @@
                 </style>
                 <div class="oe_structure"/>
                 <div class="container">
-                    <h1>Syll Burger</h1>
+                    <div class="form-group">
+                        <label>Choisissez votre option:</label><br/>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="delivery_option" id="delivery" value="delivery"/>
+                            <label class="form-check-label" for="delivery">Avec livraison</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="delivery_option" id="onsite" value="onsite"/>
+                            <label class="form-check-label" for="onsite">Sur place</label>
+                        </div>
+                    </div>
+
+                    <div id="delivery-address-section">
+                        <!-- Delivery address input fields will go here -->
+                        <p>Delivery address fields will be shown here when "Avec livraison" is selected.</p>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const deliveryRadio = document.getElementById('delivery');
+                            const onsiteRadio = document.getElementById('onsite');
+                            const deliveryAddressSection = document.getElementById('delivery-address-section');
+
+                            function toggleDeliveryAddress() {
+                                if (deliveryRadio.checked) {
+                                    deliveryAddressSection.style.display = 'block';
+                                } else {
+                                    deliveryAddressSection.style.display = 'none';
+                                }
+                            }
+
+                            // Initial check
+                            toggleDeliveryAddress();
+
+                            // Add event listeners
+                            deliveryRadio.addEventListener('change', toggleDeliveryAddress);
+                            onsiteRadio.addEventListener('change', toggleDeliveryAddress);
+                        });
+                    </script>
+
                     <!-- Iterate through distinct product types -->
                     <t t-foreach="grouped_products.items()" t-as="group">
                         <t t-set="product_type" t-value="group[0]"/>
@@ -45,7 +84,7 @@
                                     <div class="card">
                                         <img t-att-src="'/web/image/product.template/' + str(product.id) + '/image_1920'" class="card-img-top" alt="Product Image"/>
                                         <div class="card-body">
-                                            <h5 class="card-title"><t t-esc="product.name[:15]"/></h5>
+                                            <h5 class="card-title" style="font-size: 1rem;"><t t-esc="product.name"/></h5>
                                             <p class="card-text"><t t-esc="product.description"/></p>
                                             <p class="card-text">CFA <span><t t-esc="product.list_price"/></span></p>
                                             <a t-att-href="'/shop/' + slug(product)" class="w-100 text-decoration-none btn btn-primary">Ajouter+</a>

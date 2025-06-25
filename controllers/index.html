@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exemple d'Onglets</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tab-buttons {
+      display: flex;
+      border-bottom: 2px solid #ccc;
+    }
+
+    .tab-buttons button {
+      background-color: #f1f1f1;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      margin-right: 5px;
+      font-weight: bold;
+    }
+
+    .tab-buttons button.active {
+      background-color: #ffffff;
+      border-bottom: 2px solid white;
+      color: #007bff;
+    }
+
+    .tab-content {
+      border: 1px solid #ccc;
+      border-top: none;
+      padding: 20px;
+    }
+
+    .tab-content > div {
+      display: none;
+    }
+
+    .tab-content > div.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Exemple d'Onglets Simples</h2>
+
+  <div class="tabs">
+    <div class="tab-buttons">
+      <button class="tablink active" onclick="openTab(event, 'tab1')">Informations</button>
+      <button class="tablink" onclick="openTab(event, 'tab2')">Commentaires</button>
+      <button class="tablink" onclick="openTab(event, 'tab3')">Historique</button>
+    </div>
+
+    <div class="tab-content">
+      <div id="tab1" class="tab active">
+        <h3>Informations</h3>
+        <p>Voici les informations principales de l'utilisateur.</p>
+      </div>
+      <div id="tab2" class="tab">
+        <h3>Commentaires</h3>
+        <p>Section des commentaires.</p>
+      </div>
+      <div id="tab3" class="tab">
+        <h3>Historique</h3>
+        <p>Historique des actions effectuées.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openTab(evt, tabId) {
+      // Cacher tous les onglets
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      // Supprimer "active" de tous les boutons
+      const buttons = document.querySelectorAll('.tablink');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      // Afficher l'onglet sélectionné
+      document.getElementById(tabId).classList.add('active');
+
+      // Activer le bouton sélectionné
+      evt.currentTarget.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

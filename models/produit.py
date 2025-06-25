@@ -15,3 +15,17 @@ class CustomProduct(models.Model):
         ('dessert', 'DESSERTS'),
         ('boissons_eau', 'BOISSONS ET EAU'),
     ], string='Type du produit')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
